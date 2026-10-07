@@ -1,170 +1,118 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="kk">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Компьютерлер қалай үйренеді?</title>
-  <style>
-    * { box-sizing: border-box; }
-
-    body {
-      margin: 0;
-      padding: 24px 14px;
-      font-family: Arial, sans-serif;
-      background: #edf5ee;
-      color: #183b36;
-    }
-
-    main {
-      max-width: 760px;
-      margin: auto;
-    }
-
-    h1 {
-      font-size: clamp(28px, 6vw, 42px);
-      line-height: 1.2;
-    }
-
-    p { line-height: 1.6; }
-
-    .card {
-      background: white;
-      padding: 28px;
-      border-radius: 22px;
-      box-shadow: 0 8px 30px #183b3614;
-    }
-
-    .top {
-      display: flex;
-      justify-content: space-between;
-      gap: 12px;
-      font-weight: bold;
-    }
-
-    progress {
-      width: 100%;
-      height: 14px;
-      margin: 20px 0;
-      accent-color: #34735e;
-    }
-
-    #icon { font-size: 48px; }
-
-    h2 {
-      font-size: 24px;
-      line-height: 1.4;
-    }
-
-    button {
-      font: inherit;
-      cursor: pointer;
-      border-radius: 12px;
-      padding: 16px;
-      min-height: 54px;
-    }
-
-    button:focus-visible {
-      outline: 3px solid #1673b8;
-      outline-offset: 3px;
-    }
-
-    .answer {
-      display: block;
-      width: 100%;
-      margin: 12px 0;
-      text-align: left;
-      color: #183b36;
-      background: #f8faf6;
-      border: 2px solid #dce5d9;
-      font-size: 18px;
-    }
-
-    .answer:hover:not(:disabled) {
-      background: #edf5e8;
-      border-color: #34735e;
-    }
-
-    .answer:disabled {
-      opacity: 1;
-      cursor: default;
-    }
-
-    .correct {
-      background: #e3f5e4;
-      border-color: #328342;
-    }
-
-    .wrong {
-      background: #fff0e9;
-      border-color: #b25333;
-    }
-
-    #feedback {
-      padding: 16px;
-      margin-top: 20px;
-      background: #eef5e9;
-      border-radius: 12px;
-      line-height: 1.6;
-    }
-
-    .primary {
-      background: #234e47;
-      color: white;
-      border: none;
-      margin-top: 20px;
-      font-weight: bold;
-    }
-
-    #total {
-      font-size: 44px;
-      font-weight: bold;
-      color: #846015;
-    }
-
-    #review { padding-left: 24px; }
-    #review li { margin: 18px 0; line-height: 1.6; }
-
-    footer {
-      text-align: center;
-      margin-top: 24px;
-      color: #526c5d;
-      font-size: 14px;
-    }
-
-    [hidden] { display: none !important; }
-
-    @media (max-width: 480px) {
-      .card { padding: 20px; }
-      h2 { font-size: 21px; }
-      .answer { font-size: 16px; }
-    }
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#234e47">
+<title>Компьютерлер қалай үйренеді? — Ойын</title>
+<style>
+:root{font-family:system-ui,-apple-system,"Segoe UI",sans-serif;color:#183b36;background:#edf5ee;font-synthesis:none}*{box-sizing:border-box}body{margin:0;min-height:100vh;background:radial-gradient(circle at 90% 0%,#f9e9b5,transparent 45%),#edf5ee}main{max-width:820px;margin:auto;padding:32px 20px 48px}.tag{font-size:14px;letter-spacing:.08em;font-weight:750;text-transform:uppercase;color:#466b60}header{padding:12px 0 26px}h1{font-size:clamp(30px,6vw,48px);line-height:1.12;letter-spacing:-.035em;margin:14px 0}p{line-height:1.6}header p{font-size:18px;margin-bottom:0}.card{background:#fffef9;border:1px solid #d4e0d4;border-radius:26px;padding:clamp(22px,5vw,40px);box-shadow:0 14px 45px #244d3710}.topline{display:flex;justify-content:space-between;gap:12px;font-weight:700}.score{color:#75510b}progress{display:block;width:100%;height:10px;margin:18px 0 26px;accent-color:#34735e}h2{font-size:clamp(22px,4vw,29px);line-height:1.35;margin:14px 0 22px}.icon{font-size:44px}.answers{display:grid;gap:12px}button{font:inherit;cursor:pointer;border-radius:14px;min-height:56px;transition:background .15s}button:focus-visible{outline:3px solid #116aa6;outline-offset:4px}.choice{display:flex;align-items:center;gap:14px;text-align:left;padding:15px 18px;background:#fff;border:2px solid #dce5d9;color:#183b36;font-size:18px}.choice:not(:disabled):hover{background:#f0f5e9;border-color:#699074}.letter{display:grid;place-items:center;flex:none;width:30px;height:30px;border-radius:9px;background:#eef3eb;font-size:14px;font-weight:bold}.choice:disabled{cursor:default;opacity:1}.choice.correct{background:#e7f5e6;border-color:#3a7a40}.choice.wrong{background:#fff0e9;border-color:#b25333}.feedback{border-radius:14px;padding:16px 18px;margin-top:20px;background:#f0f5e9;line-height:1.6}.primary{background:#234e47;color:white;border:0;padding:15px 24px;font-weight:700;margin-top:20px}.primary:hover{background:#163e37}.hint,footer{font-size:14px;color:#526c5d}.result-score{font-size:52px;font-weight:800;margin:10px 0;color:#846015}.review{padding-left:22px}.review li{margin:16px 0;line-height:1.5}.review small{display:block;font-size:15px;color:#526c5d}footer{text-align:center;margin-top:24px}[hidden]{display:none!important}@media(max-width:420px){main{padding:20px 12px}.card{border-radius:20px}.choice{font-size:16px;padding:13px}.topline{font-size:14px}}
+</style>
 </head>
 <body>
 <main>
-  <p>2-сынып · 31-тақырып</p>
-  <h1>🤖 Компьютерлер қалай үйренеді?</h1>
-  <p>Сұрақтарға жауап беріп, жұлдыз жина! Әр дұрыс жауапқа — 1 жұлдыз.</p>
-
-  <noscript>
-    <p>Ойын үшін браузерде JavaScript қосулы болуы керек.</p>
-  </noscript>
-
-  <section id="game" class="card" hidden>
-    <div class="top">
-      <span id="counter"></span>
-      <span id="score">⭐ 0</span>
-    </div>
-
-    <progress id="progress" value="0" max="8"
-              aria-label="Жауап берілген сұрақтар"></progress>
-
-    <div id="icon" aria-hidden="true"></div>
-    <h2 id="question" tabindex="-1"></h2>
-    <div id="answers"></div>
-
-    <div id="feedback" role="status" aria-live="polite" hidden></div>
-    <button id="next" class="primary" type="button" hidden>
-      Келесі сұрақ →
-    </button>
-  </section>
+<header><div class="tag">2-сынып · 31-тақырып</div><h1>Компьютерлер<br>қалай үйренеді?</h1><p>Мысалдарды зертте, жауапты таңда және жұлдыз жина!</p></header>
+<noscript><p class="card">Ойын жұмыс істеуі үшін браузерде JavaScript қосулы болуы керек.</p></noscript>
+<section class="card" id="game" aria-label="Білімді бекіту ойыны" hidden>
+<div class="topline"><span id="counter"></span><span class="score" id="score"></span></div>
+<progress id="progress" max="8" value="0" aria-label="Жауап берілген сұрақтар"></progress>
+<div class="icon" id="icon" aria-hidden="true"></div>
+<h2 id="question" tabindex="-1"></h2>
+<div id="answers" class="answers"></div>
+<div id="feedback" class="feedback" role="status" aria-live="polite" hidden></div>
+<button id="next" class="primary" hidden>Келесі сұрақ →</button>
+<p class="hint">8 сұрақ · Әр дұрыс жауапқа 1 жұлдыз · Асықпай ойлан!</p>
+</section>
+<section class="card" id="result" aria-labelledby="result-title" hidden>
+<div class="tag">Ойын аяқталды</div><h2 id="result-title" tabindex="-1">Жарайсың, зерттеуші!</h2>
+<div id="total" class="result-score"></div><p id="message"></p>
+<h3>Бірге қайталайық</h3><ol id="review" class="review"></ol>
+<button id="restart" class="primary">Қайта ойнау ↻</button>
+</section>
+<footer>Үйрену жолы: мысал → топтастыру → үйрету → тексеру</footer>
+</main>
+<script>
+'use strict';
+const questions = [
+ {icon:'🤖',q:'Компьютерге мысықты тануды қалай үйретеміз?',a:['Оған әртүрлі мысық суреттерін көрсетеміз','Компьютерді бояймыз','Дыбысын күшейтеміз'],correct:0,why:'Компьютер мысалдардан белгілерді табуды үйренеді. Әртүрлі мысық суреттері — үйретуге арналған мысалдар.'},
+ {icon:'🍎',q:'Алма мен алмұрт суреттерін қалай топтастырамыз?',a:['Барлығын «алма» деп атаймыз','Алманы «алма», алмұртты «алмұрт» тобына саламыз','Суреттердің бәрін өшіреміз'],correct:1,why:'Мысалдарды дұрыс топтарға бөліп, атауын дұрыс беру керек.'},
+ {icon:'🐈',q:'Мысықты тануды үйрету үшін қай мысалдар пайдалырақ?',a:['Бір мысықтың бірдей суретінің көшірмелері','Тек бос суреттер','Түсі мен қалпы әртүрлі мысықтардың суреттері'],correct:2,why:'Әртүрлі мысалдар компьютерге жаңа суреттердегі мысықтарды да тануға көмектеседі.'},
+ {icon:'🏷️',q:'Иттің суреті «мысық» тобына түсіп кетті. Не істейміз?',a:['Оны «ит» тобына ауыстырамыз','Сол күйі қалдырамыз','Барлық топты «мысық» деп атаймыз'],correct:0,why:'Қате белгіленген мысалды түзетеміз. Дұрыс мысалдармен үйрету маңызды.'},
+ {icon:'⚙️',q:'Мысалдар дайын. Модельді үйрету кезінде не болады?',a:['Компьютердің экраны үлкейеді','Компьютер мысалдардан ұқсас белгілерді табуды үйренеді','Барлық сурет жоғалады'],correct:1,why:'Модель мысалдардағы заңдылықтарды үйренеді. Кейін оларды жаңа мысалдарды тану үшін қолданады.'},
+ {icon:'🔎',q:'Үйретілген модельді қалай тексереміз?',a:['Тек компьютердің түсіне қараймыз','Ештеңе тексермейміз','Үйретуде қолданылмаған жаңа суретті көрсетеміз'],correct:2,why:'Жаңа сурет арқылы модельдің үйренгенін тексереміз және жауабын дұрыс жауаппен салыстырамыз.'},
+ {icon:'🛠️',q:'Модель алма суретін алмұрт деп таныды. Не істейміз?',a:['Компьютерді ұрысамыз','Мысалдарды тексеріп, толықтырып, қайта үйретеміз','Қате жауапты әрқашан дұрыс деп санаймыз'],correct:1,why:'Модель қателесуі мүмкін. Мысалдарды түзетіп, әртүрлі мысалдар қосып, қайта үйретіп көреміз.'},
+ {icon:'🌟',q:'Компьютер берген жауап әрқашан дұрыс па?',a:['Жоқ, жауабын тексеру керек','Иә, ол ешқашан қателеспейді','Тек экран үлкен болса, дұрыс'],correct:0,why:'Компьютер де қателеседі. Оның жауабын тексеріп, дұрыс не қате екенін бағалау керек.'}
+];
+const el = id => document.getElementById(id);
+let current = 0, score = 0, answered = false, selections = [];
+function render(focus) {
+ answered = false;
+ const item = questions[current];
+ el('counter').textContent = (current + 1) + ' / ' + questions.length + ' сұрақ';
+ el('score').textContent = '⭐ ' + score;
+ el('progress').max = questions.length;
+ el('progress').value = current;
+ el('icon').textContent = item.icon;
+ el('question').textContent = item.q;
+ el('answers').replaceChildren();
+ el('feedback').hidden = true;
+ el('feedback').textContent = '';
+ el('next').hidden = true;
+ el('next').textContent = current === questions.length - 1 ? 'Нәтижені көру →' : 'Келесі сұрақ →';
+ item.a.forEach((label, index) => {
+  const button = document.createElement('button');
+  button.type = 'button'; button.className = 'choice';
+  const letter = document.createElement('span'); letter.className = 'letter';
+  letter.textContent = String.fromCharCode(65 + index); letter.setAttribute('aria-hidden','true');
+  const text = document.createElement('span'); text.textContent = label;
+  button.append(letter, text);
+  button.addEventListener('click', () => choose(index));
+  el('answers').append(button);
+ });
+ if (focus) el('question').focus();
+}
+function choose(index) {
+ if (answered) return;
+ answered = true;
+ const item = questions[current], right = index === item.correct;
+ selections.push(index);
+ if (right) score++;
+ Array.from(el('answers').children).forEach((button, i) => {
+  button.disabled = true;
+  if (i === item.correct) button.classList.add('correct');
+  else if (i === index) button.classList.add('wrong');
+ });
+ el('score').textContent = '⭐ ' + score;
+ el('progress').value = current + 1;
+ el('feedback').textContent = (right ? 'Дұрыс! ⭐ ' : 'Ойланып көрейік. Дұрыс жауап: ' + item.a[item.correct] + '. ') + item.why;
+ el('feedback').hidden = false;
+ el('next').hidden = false;
+}
+function finish() {
+ el('game').hidden = true; el('result').hidden = false;
+ el('total').textContent = '⭐ ' + score + ' / ' + questions.length;
+ el('message').textContent = score === questions.length ? 'Тамаша! Барлық сұраққа дұрыс жауап бердің!' : 'Жақсы жұмыс! Түсіндірмелерді оқып, біліміңді бекіт. Қайта ойнап көруге болады.';
+ el('review').replaceChildren();
+ questions.forEach((item, i) => {
+  const li = document.createElement('li');
+  li.textContent = (selections[i] === item.correct ? '✓ ' : '↻ ') + item.q;
+  const detail = document.createElement('small');
+  detail.textContent = 'Дұрыс жауап: ' + item.a[item.correct] + '. ' + item.why;
+  li.append(detail); el('review').append(li);
+ });
+ el('result-title').focus();
+}
+el('next').addEventListener('click', () => {
+ if (!answered) return;
+ if (current === questions.length - 1) finish();
+ else { current++; render(true); }
+});
+el('restart').addEventListener('click', () => {
+ current = 0; score = 0; selections = [];
+ el('result').hidden = true; el('game').hidden = false; render(true);
+});
+el('game').hidden = false;
+render(false);
+</script>
+</body>
+</html>
